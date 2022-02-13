@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 //import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,8 +17,8 @@ public class Topic_01_Check_Environment {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver(); //FirefoxDriver
+		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\gchromedriver.exe");
+		driver = new ChromeDriver(); //FirefoxDriver
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get("https://www.facebook.com/");
