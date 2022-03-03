@@ -11,7 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_01_Check_Environment {
+public class Topic_00_Sample {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 
@@ -25,23 +25,15 @@ public class Topic_01_Check_Environment {
 	}
 
 	@Test
-	public void TC_01_ValidateCurrentUrl() {
-		// Login Page Url matching
-		String loginPageUrl = driver.getCurrentUrl();
-		Assert.assertEquals(loginPageUrl, "https://www.facebook.com/");
+	public void TC_01() {
 	}
 
 	@Test
-	public void TC_02_ValidatePageTitle() {
-		// Login Page title
-		String loginPageTitle = driver.getTitle();
-		Assert.assertEquals(loginPageTitle, "Facebook – log in or sign up");
+	public void TC_02() {
 	}
 
 	@Test
-	public void TC_03_LoginFormDisplayed() {
-		// Login form displayed
-		Assert.assertTrue(driver.findElement(By.xpath("//form[@data-testid='royal_login_form']")).isDisplayed());
+	public void TC_03() {
 	}
 
 	/*@AfterClass
