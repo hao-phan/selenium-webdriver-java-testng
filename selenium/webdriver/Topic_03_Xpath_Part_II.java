@@ -163,9 +163,8 @@ public class Topic_03_Xpath_Part_II {
 		//Click đăng ký button
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 				
-		//Kiểm tra lỗi của Số điện thoại phải từ 10-11 số.
+		//Kiểm tra lỗi của Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019
 		Assert.assertEquals(driver.findElement(By.id("txtPhone-error")).getText(), "Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019");
-		
 	}
 
 	@AfterClass
