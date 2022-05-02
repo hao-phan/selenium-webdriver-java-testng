@@ -10,7 +10,6 @@ public class Topic_03_Random {
 		System.out.println(rand.nextInt(9999));
 		System.out.println(rand.nextInt(9999));
 		System.out.println(rand.nextInt(9999));
-
 	}
 
 }
