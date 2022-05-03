@@ -23,7 +23,6 @@ public class Topic_02_Data_Type_Exercise {
 		System.out.println("Dien tich hinh chu nhat: S = " + (width * height));
 	}
 	
-	@SuppressWarnings("unused")
 	@Test
 	public void TC_03() {
 		String name = "Automation Testing";
