@@ -21,11 +21,11 @@ public class Topic_00_Sample {
 		driver = new ChromeDriver(); //FirefoxDriver
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("https://www.facebook.com/");
 	}
 
 	@Test
 	public void TC_01() {
+		driver.get("https://www.facebook.com/");
 	}
 
 	@Test
@@ -40,4 +40,12 @@ public class Topic_00_Sample {
 	public void afterClass() {
 		driver.quit();
 	}*/
+	
+	public void sleepInSecond (long timeInsecond){
+		try {
+			Thread.sleep(timeInsecond * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
