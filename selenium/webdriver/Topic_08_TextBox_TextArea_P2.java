@@ -16,7 +16,9 @@ import org.testng.annotations.Test;
 public class Topic_08_TextBox_TextArea_P2 {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
-	String empId = driver.findElement(By.id("employeeId")).getText();
+	String empId;
+	String firstNameInput = "Hao"; 
+	String lastNameInput = "Phan";
 
 	@BeforeClass
 	public void beforeClass() {
@@ -33,30 +35,46 @@ public class Topic_08_TextBox_TextArea_P2 {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("admin123");
 		driver.findElement(By.id("btnLogin")).click();
-		
 	}
 
 	@Test
 	public void TC_02_Add_Emp() {
+		//Add and Verify
 		driver.get("https://opensource-demo.orangehrmlive.com/index.php/pim/addEmployee");
-		driver.findElement(By.id("firstName")).sendKeys("Hao");
-		driver.findElement(By.id("lastName")).sendKeys("Phan");
+		driver.findElement(By.id("firstName")).sendKeys(firstNameInput);
+		driver.findElement(By.id("lastName")).sendKeys(lastNameInput);
+		empId = driver.findElement(By.id("employeeId")).getAttribute("value");
 		driver.findElement(By.id("btnSave")).click();
-
-		Assert.assertEquals(driver.findElement(By.id("personal_txtEmpFirstName")), "Hao");
-		Assert.assertEquals(driver.findElement(By.id("personal_txtEmpLastName")), "Phan");
-		Assert.assertEquals(driver.findElement(By.id("personal_txtEmployeeId")), empId);
+		
+		String firstNameOutput = driver.findElement(By.id("personal_txtEmpFirstName")).getAttribute("value");
+		Assert.assertEquals(firstNameOutput, firstNameInput);
+		String lastNameOutput = driver.findElement(By.id("personal_txtEmpLastName")).getAttribute("value");
+		Assert.assertEquals(lastNameOutput, lastNameInput);
+		Assert.assertEquals(driver.findElement(By.id("personal_txtEmployeeId")).getAttribute("value"), empId);
 
 		Assert.assertFalse(driver.findElement(By.id("personal_txtEmpFirstName")).isEnabled());
 		Assert.assertFalse(driver.findElement(By.id("personal_txtEmpLastName")).isEnabled());
 		Assert.assertFalse(driver.findElement(By.id("personal_txtEmployeeId")).isEnabled());
 		
+		//Edit and Verify
+		driver.findElement(By.xpath("//input[@id='btnSave' and @value='Edit']")).click();
+		driver.findElement(By.xpath("//input[@id='personal_txtEmpFirstName']")).clear();
+		driver.findElement(By.xpath("//input[@id='personal_txtEmpFirstName']")).sendKeys("Vuong");
+		driver.findElement(By.xpath("//input[@id='personal_txtEmpLastName']")).clear();
+		driver.findElement(By.xpath("//input[@id='personal_txtEmpLastName']")).sendKeys("Hoang");
+		driver.findElement(By.xpath("//input[@id='btnSave']")).click();
+
+		Assert.assertEquals(driver.findElement(By.xpath("//input[@id='personal_txtEmpFirstName']")).getAttribute("value"), "Vuong");
+		Assert.assertEquals(driver.findElement(By.xpath("//input[@id='personal_txtEmpLastName']")).getAttribute("value"), "Hoang");
 		
+		Assert.assertFalse(driver.findElement(By.id("personal_txtEmpFirstName")).isEnabled());
+		Assert.assertFalse(driver.findElement(By.id("personal_txtEmpLastName")).isEnabled());
+		Assert.assertFalse(driver.findElement(By.id("personal_txtEmployeeId")).isEnabled());
 	}
 
-	@Test
+	/*@Test
 	public void TC_03() {
-	}
+	}*/
 
 	@AfterClass
 	public void afterClass() {
