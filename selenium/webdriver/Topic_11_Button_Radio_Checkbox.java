@@ -25,7 +25,7 @@ public class Topic_11_Button_Radio_Checkbox {
 		driver.manage().window().maximize();
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Button() {
 		driver.get("https://www.fahasa.com/customer/account/create");
 		
@@ -48,11 +48,65 @@ public class Topic_11_Button_Radio_Checkbox {
 	}
 
 	@Test
-	public void TC_02() {
+	public void TC_02_Default_Radio_Checkbox() {
+		driver.get("https://automationfc.github.io/multiple-fields/");
+
+		By emotionalCheckbox = By.id("input_52_6");
+		By digestiveCheckbox = By.id("input_52_14");
+		By venerealCheckbox = By.id("input_52_24");
+
+		By fiveDayRadio = By.id("input_80_3");
+		By dietPlanRadio = By.id("input_81_2");
+		By glassesRadio = By.id("input_76_2");
+		
+		// 1 - Chọn (Click - Selected)
+		// Checkbox
+		driver.findElement(emotionalCheckbox).click(); // Emotional Disorder
+		driver.findElement(digestiveCheckbox).click(); // Digestive Problems
+		driver.findElement(venerealCheckbox).click(); // Venereal Disease
+		sleepInSecond(1);
+		
+		// Raido
+		driver.findElement(fiveDayRadio).click(); // 5+ days
+		driver.findElement(dietPlanRadio).click(); // I don't have a diet plan
+		driver.findElement(glassesRadio).click(); // 3-4 glasses/day
+		sleepInSecond(1);
+		
+		// 2 - Verify (isSelected)
+		Assert.assertTrue(driver.findElement(emotionalCheckbox).isSelected());
+		Assert.assertTrue(driver.findElement(digestiveCheckbox).isSelected());
+		Assert.assertTrue(driver.findElement(venerealCheckbox).isSelected());
+
+		Assert.assertTrue(driver.findElement(fiveDayRadio).isSelected());
+		Assert.assertTrue(driver.findElement(dietPlanRadio).isSelected());
+		Assert.assertTrue(driver.findElement(glassesRadio).isSelected());
+		
+		// 3 - Deselected
+		// Checkbox -> Click tiếp sẽ là deselected
+		driver.findElement(emotionalCheckbox).click();
+		driver.findElement(digestiveCheckbox).click();
+		driver.findElement(venerealCheckbox).click();
+		sleepInSecond(1);
+		
+		// Raido -> CLick nữa thì Radio vẫn là chọn
+		driver.findElement(fiveDayRadio).click();
+		driver.findElement(dietPlanRadio).click();
+		driver.findElement(glassesRadio).click();
+		sleepInSecond(1);
+		
+		// 4 - Verify (Deselected)
+		Assert.assertFalse(driver.findElement(emotionalCheckbox).isSelected());
+		Assert.assertFalse(driver.findElement(digestiveCheckbox).isSelected());
+		Assert.assertFalse(driver.findElement(venerealCheckbox).isSelected());
+		
+		Assert.assertTrue(driver.findElement(fiveDayRadio).isSelected());
+		Assert.assertTrue(driver.findElement(dietPlanRadio).isSelected());
+		Assert.assertTrue(driver.findElement(glassesRadio).isSelected());
 	}
 
-	@Test
-	public void TC_03() {
+	//@Test
+	public void TC_03_SelectAllCheckbox() {
+		
 	}
 
 	@AfterClass
