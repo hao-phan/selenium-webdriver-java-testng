@@ -27,7 +27,7 @@ public class Topic_11_Button_Radio_Checkbox {
 		driver.manage().window().maximize();
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Button() {
 		driver.get("https://www.fahasa.com/customer/account/create");
 		
@@ -49,7 +49,7 @@ public class Topic_11_Button_Radio_Checkbox {
 		Assert.assertEquals(loginButtonEnable, "#C92127");
 	}
 
-	@Test
+	//@Test
 	public void TC_02_Default_Radio_Checkbox() {
 		driver.get("https://automationfc.github.io/multiple-fields/");
 
@@ -112,7 +112,7 @@ public class Topic_11_Button_Radio_Checkbox {
 		
 		List<WebElement> selectAll = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		
-		// Chạy for để duyệt và click chọn từng cái
+		// Selected - Chạy for để duyệt và click chọn từng cái
 		for (WebElement checkbox : selectAll) {
 			if (!checkbox.isSelected()) {
 				checkbox.click();
@@ -124,6 +124,19 @@ public class Topic_11_Button_Radio_Checkbox {
 		for (WebElement checkbox : selectAll) {
 			Assert.assertTrue(checkbox.isSelected());
 		}
+		
+		// Deselected - Chạy for để duyệt và click bỏ chọn từng cái
+				for (WebElement checkbox : selectAll) {
+					if (checkbox.isSelected()) {
+						checkbox.click();
+						sleepInSecond(1);
+					}
+				}
+				
+				// Verify all checkboxes
+				for (WebElement checkbox : selectAll) {
+					Assert.assertFalse(checkbox.isSelected());
+				}
 		
 	}
 
