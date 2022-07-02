@@ -1,10 +1,12 @@
 package webdriver;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.Color;
 //import org.openqa.selenium.firefox.FirefoxDriver;
@@ -25,7 +27,7 @@ public class Topic_11_Button_Radio_Checkbox {
 		driver.manage().window().maximize();
 	}
 
-	//@Test
+	@Test
 	public void TC_01_Button() {
 		driver.get("https://www.fahasa.com/customer/account/create");
 		
@@ -104,8 +106,24 @@ public class Topic_11_Button_Radio_Checkbox {
 		Assert.assertTrue(driver.findElement(glassesRadio).isSelected());
 	}
 
-	//@Test
+	@Test
 	public void TC_03_SelectAllCheckbox() {
+		driver.get("https://automationfc.github.io/multiple-fields/");
+		
+		List<WebElement> selectAll = driver.findElements(By.xpath("//input[@type='checkbox']"));
+		
+		// Chạy for để duyệt và click chọn từng cái
+		for (WebElement checkbox : selectAll) {
+			if (!checkbox.isSelected()) {
+				checkbox.click();
+				sleepInSecond(1);
+			}
+		}
+		
+		// Verify all checkboxes
+		for (WebElement checkbox : selectAll) {
+			Assert.assertTrue(checkbox.isSelected());
+		}
 		
 	}
 
